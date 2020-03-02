@@ -7,6 +7,8 @@ namespace bankHeist {
             Console.WriteLine ("Plan Your Heist");
 
             List<Dictionary<string, string>> teamMembersList = new List<Dictionary<string, string>> ();
+            int bankDifficulty = 100;
+            int teamSkill = 0;
 
             while (true) {
                 Dictionary<string, string> teamMember = new Dictionary<string, string> ();
@@ -30,13 +32,27 @@ namespace bankHeist {
 
             }
 
+            // Show each team members information
+
             foreach (Dictionary<string, string> member in teamMembersList) {
                 // Iterate the KeyValuePairs of the teamMembers
                 Console.WriteLine ("Team Member:");
-                foreach (KeyValuePair<string, string> pair in member) {
-                    Console.WriteLine ($"{pair.Key}: {pair.Value}");
-                    // Console.WriteLine (teamMembersList);
+                foreach (KeyValuePair<string, string> individual in member) {
+                    if (individual.Key == "Skill Level") {
+                        teamSkill += int.Parse (individual.Value);
+                    };
+
+                    // Console.WriteLine ($"{individual.Key}: {individual.Value}");
+                    // Console.WriteLine (teamSkill);
                 }
+            }
+
+            // Console.WriteLine (teamSkill);
+
+            if (teamSkill >= bankDifficulty) {
+                Console.WriteLine ("Your Heist Was Successful");
+            } else {
+                Console.WriteLine ("Your Heist Failed");
             }
 
         }
